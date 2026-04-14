@@ -8,6 +8,6 @@ services:
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
     ports:
-      - "8123:8123"
+      - "3003:8123"
     environment:
       TZ: America/Phoenix
