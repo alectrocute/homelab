@@ -1,0 +1,29 @@
+services:
+  blocky-ui:
+    image: ghcr.io/gabeduartem/blocky-ui:latest
+    container_name: blocky-ui
+    restart: unless-stopped
+    depends_on:
+      - blocky
+    ports:
+      - 3000:3000
+    volumes:
+      - ./logs:/logs/
+    environment:
+      - BLOCKY_API_URL=http://localhost:3001
+      - QUERY_LOG_TYPE=csv
+      - QUERY_LOG_TARGET=/logs/
+      - INSTANCE_NAME=blocky-raspi5
+
+  blocky:
+    image: spx01/blocky
+    container_name: blocky
+    hostname: blocky
+    restart: unless-stopped
+    volumes:
+      - ./config.yml:/app/config.yml
+      - ./logs:/logs/
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 3001:4000
+      - 54:53/udp
