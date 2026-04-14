@@ -10,7 +10,7 @@ services:
     volumes:
       - ./logs.csv:/logs.csv
     environment:
-      - BLOCKY_API_URL=http://localhost:3001
+      - BLOCKY_API_URL=http://192.168.8.73:3001
       - QUERY_LOG_TYPE=csv
       - QUERY_LOG_TARGET=/logs.csv
       - INSTANCE_NAME=blocky-raspi5
