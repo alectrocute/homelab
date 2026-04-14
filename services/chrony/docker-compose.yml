@@ -1,1 +1,12 @@
-
+services:
+  chrony:
+    image: cturra/ntp:latest
+    container_name: chrony
+    restart: always
+    cap_add:
+      - SYS_TIME
+    ports:
+      - "123:123/udp"
+    volumes:
+      - ./chrony.conf:/etc/chrony/chrony.conf:ro
+      - ./data:/var/lib/chrony
